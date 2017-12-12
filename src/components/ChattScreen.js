@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
+import Backend from './Backend';
 
-class ChattScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: `Chat with ${navigation.state.params.user}`,
-  });
+class Chatt extends Component {
+  state = {
+    messages: [],
+  };
+  componentWillMount() {
+
+  }
   render() {
-    const { params } = this.props.navigation.state;
     return (
-      <View>
-        <Text>Chat with {params.user}</Text>
-      </View>
+      <GiftedChat
+        messages={this.state.messages}
+        // onSend={(message) => {
+        //   Backend.sendMessage(message);
+        // }}
+        // user={{
+        //   _id: Backend.getUid(),
+        //   nama: this.props.nama,
+        // }}
+      />
     );
   }
 }
+//   componentDidMount() {
+//     Backend.loadMessages((message) => {
+//       this.setState((previousState) => {
+//         return {
+//           messages: GiftedChat.append(previousState.messages, message),
+//         };
+//       });
+//     });
+//   }
+//   componentWillUnmount() {
+//     Backend.closeChat();
+//   }
+// }
+//
+// Chatt.defaultProps = {
+//   nama: 'Ahsan',
+// };
 
-export default ChattScreen;
+// Chatt.propTypes = {
+//   name: React.propTypes.string,
+// };
+
+export default Chatt;

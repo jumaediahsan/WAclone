@@ -14,3 +14,4 @@ export const SIGNUP_USER_FAIL = 'signup_user_fail';
 
 
 export const USER_FETCH_SUCCESS = 'user_fetch_success';
+export const CHAT_TABLE_SUCCESS = 'chat_table_success';

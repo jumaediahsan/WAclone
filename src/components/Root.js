@@ -4,6 +4,7 @@ import ChattScreen from './ChattScreen';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import MainScreenNavigator from './mainscreen/MainScreenNavigator';
+import ContactDetail from './mainscreen/ContactDetail';
 
 export const RootNavigator = StackNavigator({
   LoginForm: { screen: LoginForm },
@@ -14,6 +15,7 @@ export const RootNavigator = StackNavigator({
       title: 'WhatsApp',
     },
    },
+  ContactDetail: {screen: ContactDetail},
   ChattScreen: { screen: ChattScreen },
 });
 
