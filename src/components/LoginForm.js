@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { View, Text, ImageBackground, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { FormLabel, FormInput, FormValidationMessage, Button, SocialIcon } from 'react-native-elements'
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardStart, Input, Button, Spinner } from './common';
+import { Card, CardStart, Spinner } from './common';
+import background from './image/bg.png';
+import logo from './image/whatsapp.png';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -26,53 +29,96 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Sign In
-      </Button>
+      <Button
+        buttonStyle = {styles.buttonStyle}
+        borderRadius={20}
+        backgroundColor= 'transparent'
+        icon={{name: 'account-circle', size: 25}}
+        onPress={this.onButtonPress.bind(this)}
+        title= 'Sign In'
+      />
     );
   }
     render() {
       const { navigate } = this.props.navigation;
         return (
-          <Card>
-              <CardStart>
-                <Input
-                  label="Email"
-                  placeholder="email@gmail.com"
-                  onChangeText={this.onEmailChange.bind(this)}
-                  value={this.props.email}
-                />
-              </CardStart>
-              <CardStart>
-                <Input
-                  secureTextEntry
-                  label="Password"
-                  placeholder="password"
-                  onChangeText={this.onPasswordChange.bind(this)}
-                  value={this.props.password}
-                />
-              </CardStart>
-              <Text style={styles.errorTextStyle}>
-                {this.props.error}
-              </Text>
-              <CardStart>
-                  {this.renderButton()}
-              </CardStart>
-              <Text>Belum Punya akun </Text>
-              <Text onPress = {() => navigate('SignupForm')}>
-                Daftar Disini !
-              </Text>
-            </Card>
-
+          <ImageBackground source={background} style={{flex:1}} >
+            <Card>
+              <View>
+                <Image
+                    source = {logo}
+                    style={styles.imageStyle}
+                  />
+                </View>
+                <View>
+                    <FormLabel labelStyle={styles.labelStyles}>Email</FormLabel>
+                    <FormInput
+                      inputStyle = {styles.formInputStyle}
+                      placeholder="email@gmail.com"
+                      onChangeText={this.onEmailChange.bind(this)}
+                      value={this.props.email}
+                      placeholderTextColor= "#d6ec20"
+                    />
+                </View>
+                <View>
+                  <FormLabel labelStyle={styles.labelStyles}>Password</FormLabel>
+                  <FormInput
+                    inputStyle = {styles.formInputStyle}
+                    secureTextEntry
+                    placeholder="password"
+                    onChangeText={this.onPasswordChange.bind(this)}
+                    value={this.props.password}
+                    placeholderTextColor= "#d6ec20"
+                  />
+                </View>
+                <FormValidationMessage>
+                  {this.props.error}
+                </FormValidationMessage>
+                <CardStart>
+                    {this.renderButton()}
+                </CardStart>
+                  <Text style={styles.textStyle}>Belum Punya akun </Text>
+                  <Text onPress = {() => navigate('SignupForm')} style={styles.textStyle}>
+                    Daftar Disini !
+                  </Text>
+              </Card>
+            </ImageBackground>
         );
     }
 }
 
 const styles= {
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: 40,
     alignSelf: 'center',
     color: 'red'
+  },
+  labelStyles : {
+    fontSize: 18,
+    color: 'white',
+    paddingRight: 25,
+    paddingLeft: 25,
+  },
+  buttonStyle: {
+    width: 260,
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'white',
+    alignSelf: 'center'
+  },
+  textStyle: {
+    color: '#fff',
+    fontSize: 15
+  },
+  formInputStyle: {
+    fontSize: 18,
+    color: 'white',
+    paddingRight: 30,
+    paddingLeft: 30,
+  },
+  imageStyle: {
+    height: 120,
+    width: 140
   }
 };
 

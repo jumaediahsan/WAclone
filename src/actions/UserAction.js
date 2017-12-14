@@ -36,13 +36,11 @@ const { currentUser } = firebase.auth();
       // });
       .then(() => {
         firebase.database().ref(`/chats`)
-          .push({uid: currentUser.uid, to:rowData.uid})
+          .push({to:rowData.uid, createdBy: currentUser.uid, createdAt: firebase.database.ServerValue.TIMESTAMP })
           const resetNavigator = NavigationActions.reset({
               index: 0,
               actions: [
-                  NavigationActions.navigate({
-                      routeName: 'ChattScreen',
-                  })
+                  NavigationActions.navigate({routeName: 'ChattScreen'})
               ],
           });
           dispatch(resetNavigator);

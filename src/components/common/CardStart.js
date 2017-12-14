@@ -11,10 +11,11 @@ const CardStart = (props) => {
 
 const styles = {
     containerStyle: {
-        padding: 5,
+        padding: 3,
         backgroundColor: 'rgba(0, 0, 0, 0.3)',
         flexDirection: 'row',
         position: 'relative',
+        borderRadius: 20
 
     }
 };

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Text, ImageBackground } from 'react-native';
+import { Text, ImageBackground, View, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { FormLabel, FormInput, FormValidationMessage, Button, SocialIcon } from 'react-native-elements'
 import { enterEmail, enterPassword, signUp, nameChanged } from '../actions';
-import { Card, CardStart, Input, Button, Spinner } from './common';
+import { Cardtwo, CardStart, Spinner } from './common';
+import background from './image/bg.png';
+import logo from './image/whatsapp.png'
 
 class SignupForm extends Component {
 
@@ -31,51 +34,68 @@ class SignupForm extends Component {
     }
 
     return (
-      <Button onPress={this.onSignupPress.bind(this)}>
-        Sign Up
-      </Button>
+      <Button
+        buttonStyle = {styles.buttonStyle}
+        borderRadius={20}
+        backgroundColor= 'transparent'
+        icon={{name: 'account-circle', size: 25}}
+        onPress={this.onSignupPress.bind(this)}
+        title= 'Sign Up'
+      />
     );
   }
     render() {
         return (
-            <Card>
-            <CardStart>
-              <Input
-                label="Nama"
-                placeholder="Enter Your Name"
-                onChangeText={this.nameText.bind(this)}
-                value={this.props.name}
-              />
-            </CardStart>
-              <CardStart>
-                <Input
-                  label="Email"
-                  placeholder="email@gmail.com"
-                  onChangeText={this.onEmailChange.bind(this)}
-                  value={this.props.email}
-                />
-              </CardStart>
+          <ImageBackground source={background} style={{flex:1}} >
+            <Cardtwo>
+                <View>
+                  <Image
+                    source = {logo}
+                    style={styles.imageStyle}
+                  />
+                </View>
+                <View>
+                  <FormLabel labelStyle={styles.labelStyles}>Nama</FormLabel>
+                  <FormInput
+                    inputStyle = {styles.formInputStyle}
+                    placeholder="Enter Your Name"
+                    onChangeText={this.nameText.bind(this)}
+                    value={this.props.name}
+                    placeholderTextColor= "#d6ec20"
+                  />
+                </View>
+                <View>
+                  <FormLabel labelStyle={styles.labelStyles}>Email</FormLabel>
+                  <FormInput
+                    inputStyle = {styles.formInputStyle}
+                    placeholder="email@gmail.com"
+                    onChangeText={this.onEmailChange.bind(this)}
+                    value={this.props.email}
+                    placeholderTextColor= "#d6ec20"
+                  />
+                </View>
 
-              <CardStart>
-                <Input
-                  secureTextEntry
-                  label="Password"
-                  placeholder="password"
-                  onChangeText={this.onPasswordChange.bind(this)}
-                  value={this.props.password}
-                />
-              </CardStart>
-              <CardStart>
-                <Text style={styles.errorTextStyle}>
-                  {this.props.error}
-                </Text>
-              </CardStart>
+                <View>
+                  <FormLabel labelStyle={styles.labelStyles}>Password</FormLabel>
+                  <FormInput
+                    secureTextEntry
+                    inputStyle = {styles.formInputStyle}
+                    placeholder="password"
+                    onChangeText={this.onPasswordChange.bind(this)}
+                    value={this.props.password}
+                    placeholderTextColor= "#d6ec20"
+                  />
+                </View>
+                  <FormValidationMessage>
+                    {this.props.error}
+                  </FormValidationMessage>
 
-              <CardStart>
-                {this.renderButton()}
-              </CardStart>
+                <CardStart>
+                  {this.renderButton()}
+                </CardStart>
 
-            </Card>
+            </Cardtwo>
+          </ImageBackground>
         );
     }
 }
@@ -84,6 +104,33 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
+  },
+  labelStyles : {
+    fontSize: 18,
+    color: 'white',
+    paddingRight: 25,
+    paddingLeft: 25,
+  },
+  buttonStyle: {
+    width: 260,
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'white',
+    alignSelf: 'center'
+  },
+  textStyle: {
+    color: '#fff',
+    fontSize: 15
+  },
+  formInputStyle: {
+    fontSize: 18,
+    color: 'white',
+    paddingRight: 30,
+    paddingLeft: 30,
+  },
+  imageStyle: {
+    height: 120,
+    width: 140
   }
 };
 

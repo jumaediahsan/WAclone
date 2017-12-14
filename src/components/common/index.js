@@ -6,3 +6,4 @@ export * from './Input';
 export * from './Spinner';
 export * from './Tstart';
 export * from './CardStart';
+export * from './Cardtwo';

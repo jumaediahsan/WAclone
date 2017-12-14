@@ -32,9 +32,10 @@ class ContactList extends Component {
     // onNavigate() {
     //   let chatt = this.props.usercontact
     //   this.props.chatTable(chatt)
-    //   //this.props.chatTable(this.props.navigation.navigate('ContactDetail'))
+    //   this.props.chatTable(this.props.navigation.navigate('ContactDetail', { user:'janwe' }))
     //
-    // }
+    // }navigate('ChattScreen', {name:rowData.name})
+    //onPress={() => this.props.chatTable(rowData)} {...rowData}
 
   render() {
     // const { navigate } = this.props.navigation;

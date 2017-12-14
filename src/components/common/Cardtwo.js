@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 
-const Card = (props) => {
+const Cardtwo = (props) => {
     return (
         <View style={styles.containerStyle}>
             {props.children}
@@ -25,8 +25,8 @@ const styles = {
         elevation: 1,
         marginLeft: 40,
         marginRight: 40,
-        marginTop: 50,
-        marginBottom: 50,
+        marginTop: 20,
+        marginBottom: 20,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
@@ -34,4 +34,4 @@ const styles = {
 
 };
 
-export { Card };
+export { Cardtwo };
