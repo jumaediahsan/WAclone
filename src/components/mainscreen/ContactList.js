@@ -45,7 +45,7 @@ class ContactList extends Component {
           enableEmptySections
           dataSource={this.dataSource}
           renderRow={rowData => (
-            <ContactItem onPress={() => this.props.chatTable(rowData)} {...rowData} />
+            <ContactItem onPress={() => this.props.chatTable(rowData)} {...rowData} {...this.props}/>
           )}
         />
     );
@@ -53,9 +53,8 @@ class ContactList extends Component {
 }
 
 const mapStateToProps = state => {
-  const usercontact = _.map(state.usercontact, (val, uid) => {
-    return { ...val, uid };
-  });
+  const usercontact = []
+  
   return { usercontact };
 };
 export default connect(mapStateToProps, { userFetch, chatTable })(ContactList);

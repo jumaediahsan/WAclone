@@ -54,9 +54,41 @@ export const loginUser = ({ email, password }) => {
       dispatch({ type: SPINNER_LOGIN });
 
       firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(user => loginUserSuccess(dispatch, user))
+      .then(user => {
+       console.log(user)
+      })
         .catch(user => loginUserFail(dispatch, user));
     };
+};
+
+
+toMainScreen = () => {
+  return {
+    type : 'MAIN_SCREEN',
+  }
+}
+
+
+const loginUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  });
+  dispatch(toMainScreen());
+//   const resetNavigator = NavigationActions.reset({
+//     index: 0,
+//     actions: [
+//         NavigationActions.navigate({
+//             routeName: 'MainScreenNavigator',
+//         })
+//     ],
+// });
+// dispatch(resetNavigator);
+};
+
+const loginUserFail = (dispatch, user) => {
+  console.log(user)
+  dispatch({ type: LOGIN_USER_FAIL });
 };
 
 export const signUp = ({ email, password, name }) => {
@@ -70,26 +102,6 @@ export const signUp = ({ email, password, name }) => {
 };
 
 
-const loginUserSuccess = (dispatch, user) => {
-  dispatch({
-    type: LOGIN_USER_SUCCESS,
-    payload: user
-  });
-  const resetNavigator = NavigationActions.reset({
-    index: 0,
-    actions: [
-        NavigationActions.navigate({
-            routeName: 'MainScreenNavigator',
-        })
-    ],
-});
-dispatch(resetNavigator);
-};
-
-const loginUserFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL });
-};
-
 const signupUserSuccess = (dispatch, user, name, email) => {
   const { currentUser } = firebase.auth();
   dispatch({
@@ -99,15 +111,6 @@ const signupUserSuccess = (dispatch, user, name, email) => {
   firebase.database().ref(`users/${currentUser.uid}`)
   .set({ name, email })
 
-  const resetNavigator = NavigationActions.reset({
-    index: 0,
-    actions: [
-        NavigationActions.navigate({
-            routeName: 'LoginForm',
-        })
-    ],
-});
-dispatch(resetNavigator);
 };
 
 const signupUserFail = (dispatch) => {

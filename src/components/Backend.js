@@ -60,6 +60,7 @@ loadMessages(callback){
       _id:data.key,
       text: message.text,
       createdAt: new Date(message.createdAt),
+
     });
   };
   this.messagesRef.limitToLast(20).on('child_added', onReceive);
@@ -73,8 +74,8 @@ sendMessage(message) {
       text: message[i].text,
       createdBy : firebase.auth().currentUser.uid,
       createdAt: firebase.database.ServerValue.TIMESTAMP,
-      // chatId: rowData.uid
-      // to:
+      // chatId : usercontact.uid,
+      // to : usercontact.to
     });
   }
 }
@@ -86,4 +87,5 @@ closeChat() {
     }
   }
 }
+
 export default new Backend();

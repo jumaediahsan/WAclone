@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
-import NavController from './NavController';
+import AppWithNavigationState from './AppNavigator';
 
 export default class App extends Component {
   componentWillMount() {
@@ -22,7 +22,7 @@ firebase.initializeApp(config);
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <NavController />
+        <AppWithNavigationState />
       </Provider>
     );
   }

@@ -6,7 +6,6 @@ import {
 } from './types';
 
 export const userFetch = () => {
-
   return (dispatch) => {
     firebase.database().ref(`/users`)
       .once('value') .then(snapshot => {
@@ -36,7 +35,13 @@ const { currentUser } = firebase.auth();
       // });
       .then(() => {
         firebase.database().ref(`/chats`)
-          .push({to:rowData.uid, createdBy: currentUser.uid, createdAt: firebase.database.ServerValue.TIMESTAMP })
+          .push({name:rowData.name, to:rowData.uid, createdBy: currentUser.uid, createdAt: firebase.database.ServerValue.TIMESTAMP })
+          .then ((result => {
+            firebase.database().ref(`/chats/${result.key}`)
+              .on('value', snapshot => {
+                dispatch({ type: CHAT_TABLE_SUCCESS, payload: snapshot.val() })
+              })
+          }))
           const resetNavigator = NavigationActions.reset({
               index: 0,
               actions: [

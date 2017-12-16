@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { ImageBackground } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
-import Backend from './Backend';
+import { connect } from 'react-redux';
+import Backend  from './Backend';
 import background from './image/background.jpg';
 
 class Chatt extends Component {
- //  static navigationOptions = ({navigation}) => ({
- //   title: navigation.state.params.name,
- // });
+  static navigationOptions = ({navigation}) => ({
+   title: navigation.state.params.name,
+ });
   state = {
     messages: [],
   };
